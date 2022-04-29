@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+	int bno = Integer.parseInt(request.getParameter("bno"));
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시판 글 보기</title>
+</head>
+<body>
+<%@ include file="connectPool.conf" %>
+<%
+	sql = "select * from board where bno=?";
+	pstmt = conn.prepareStatement(sql);
+	pstmt.setInt(1, bno);
+	rs = pstmt.executeQuery();
+	if(rs.next()){
+%>
+	<tr>
+		<th>글번호</th><td><%=rs.getInt("bno") %></td>
+	</tr>
+	<tr>
+		<th>글번호</th><td><%=rs.getString("btitle") %></td>
+	</tr>
+	<tr>
+		<th>글번호</th><td><%=rs.getString("bcontent") %></td>
+	</tr>
+	<tr>
+		<th>글번호</th><td><%=rs.getString("regdate") %></td>
+	</tr>
+	<tr>
+		<th>글번호</th><td><%=rs.getString("author") %></td>
+	</tr>
+
+<%@ incules file="connectClose.conf" %>
+</body>
+</html>
